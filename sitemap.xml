@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Placeholder domain: this variant has not been assigned a confirmed
+  production domain yet. Replace REPLACE-WITH-PRODUCTION-DOMAIN below (and
+  in robots.txt) with the real domain before this sitemap is relied on by
+  search engines. Only pages that actually exist in this repository are
+  listed — do not add URLs here until the corresponding page exists.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://REPLACE-WITH-PRODUCTION-DOMAIN/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://REPLACE-WITH-PRODUCTION-DOMAIN/menu.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://REPLACE-WITH-PRODUCTION-DOMAIN/locations.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://REPLACE-WITH-PRODUCTION-DOMAIN/story.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://REPLACE-WITH-PRODUCTION-DOMAIN/gallery.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+</urlset>

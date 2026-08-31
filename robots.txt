@@ -1,12 +1,12 @@
 # Bamboo Sushi Bar & Hibachi Express — Variant 1
-# Everything a visitor can see, crawlers can see too. *.md files are this
-# repo's internal project documentation, not customer-facing content, so
-# they're excluded from crawling here; netlify.toml is what actually keeps
-# them from being served at all.
+# Customer-facing pages are crawlable. Internal repository documentation is
+# excluded here and also blocked from being served by Netlify.
 
 User-agent: *
 Allow: /
+Disallow: /docs/
+Disallow: /data/
 Disallow: /*.md$
 Disallow: /netlify.toml
 
-Sitemap: https://REPLACE-WITH-PRODUCTION-DOMAIN/sitemap.xml
+Sitemap: https://bamboo-variant1.netlify.app/sitemap.xml

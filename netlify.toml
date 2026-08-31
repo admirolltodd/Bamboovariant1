@@ -11,6 +11,11 @@
     Cache-Control = "public, max-age=31536000"
 
 [[headers]]
+  for = "/"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
   for = "/*.html"
   [headers.values]
     Cache-Control = "public, max-age=0, must-revalidate"
@@ -35,13 +40,13 @@
   [headers.values]
     Cache-Control = "public, max-age=3600"
 
-# Baseline security headers for the public static site. The only inline CSS
-# currently lives on the custom 404 page, hence style-src 'unsafe-inline'.
-# No third-party scripts, fonts, frames or embeds are used.
+# Baseline security headers for the public static site. All page styling is
+# externalized in css/site.css; no third-party scripts, fonts, frames or embeds
+# are used, so inline script/style execution remains disallowed.
 [[headers]]
   for = "/*"
   [headers.values]
-    Content-Security-Policy = "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'"
+    Content-Security-Policy = "default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'"
     X-Content-Type-Options = "nosniff"
     X-Frame-Options = "DENY"
     Referrer-Policy = "strict-origin-when-cross-origin"

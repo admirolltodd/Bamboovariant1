@@ -2,9 +2,9 @@
 [build]
   publish = "."
 
-# Images keep their filename when the photo changes (see docs/ASSETS.md),
-# so a long cache is safe. HTML/CSS/JS are edited over time, so those stay
-# on a short/no cache to avoid returning visitors seeing stale content.
+# Source images keep stable filenames, while Netlify Image CDN handles the
+# visitor-facing resized derivatives. HTML/CSS/JS remain revalidated so site
+# changes are visible promptly.
 [[headers]]
   for = "/images/*"
   [headers.values]
@@ -35,15 +35,9 @@
   [headers.values]
     Cache-Control = "public, max-age=3600"
 
-# Security headers for every response. This is a static informational site
-# with no login, forms, or visitor-input reflected back into a page, so
-# these close off the standard things a public site shouldn't leave open by
-# default (clickjacking, MIME sniffing, unused browser permissions) rather
-# than patch an active vulnerability. style-src needs 'unsafe-inline'
-# because a few pages carry a small inline style="" attribute and there is
-# no build step to hash or externalize them. The site loads no third-party
-# scripts, fonts, or embeds today — if one is ever added, update this line
-# to allow that exact origin rather than widening it generally.
+# Baseline security headers for the public static site. The only inline CSS
+# currently lives on the custom 404 page, hence style-src 'unsafe-inline'.
+# No third-party scripts, fonts, frames or embeds are used.
 [[headers]]
   for = "/*"
   [headers.values]
@@ -54,18 +48,28 @@
     Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=()"
     Strict-Transport-Security = "max-age=31536000; includeSubDomains"
 
-# Project documentation lives at the repo root next to index.html so it's
-# easy to find on GitHub, but publish="." would otherwise also let Netlify
-# serve these as live public pages. Block them without touching the files
-# themselves or how GitHub/git sees them.
+# Repository-only material should never become customer-facing simply because
+# the static publish directory is the repository root.
 [[redirects]]
   from = "/README.md"
-  to = "/index.html"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/docs/*"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/data/*"
+  to = "/404.html"
   status = 404
   force = true
 
 [[redirects]]
   from = "/netlify.toml"
-  to = "/index.html"
+  to = "/404.html"
   status = 404
   force = true
